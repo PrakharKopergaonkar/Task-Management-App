@@ -11,11 +11,14 @@ app.use(bodyParser.json())
 const db = require('./config/keys').mongoURI
 
 //mongoose connectivity for localhost database
-mongoose.connect(db, {useNewUrlParser: true}) //
+mongoose.connect(db, {
+        useUnifiedTopology: true,
+        useNewUrlParser: true,
+        }) //
         .then(() => console.log("mongodb connected"))
         .catch(err => console.log(err));
 
-
+app.use(express.json());
 //use routes 
 app.use('/api/items', items)
 const port = process.env.PORT || 5000

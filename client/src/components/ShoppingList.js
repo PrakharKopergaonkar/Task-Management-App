@@ -4,11 +4,9 @@ import {
     ListGroup,
     ListGroupItem,
     Button,
-    Fade
 } from 'reactstrap'
 import {
     CSSTransition,
-    Transition,
     TransitionGroup
 } from 'react-transition-group'
 import {connect} from 'react-redux';
