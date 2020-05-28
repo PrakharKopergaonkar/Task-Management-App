@@ -8,7 +8,11 @@ import store from './store'
 import ItemModal from './components/ItemModal'
 import {Container} from 'reactstrap'
 import LoadingButton from './components/LoadingButton';
+import {loadUser} from './Actions/AuthActions'
 class App extends Component{
+  componentDidMount() {
+    store.dispatch(loadUser());
+  }
   render() {
     return (
       <Provider store={store}>
