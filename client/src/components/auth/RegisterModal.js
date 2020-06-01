@@ -132,7 +132,7 @@ class RegisterModal extends Component {
                                 <Input 
                                     type={this.state.security ? "password" : "text"}
                                     name="confirmpassword"
-                                    id="password"
+                                    id="confirmpassword"
                                     className="mb-3"
                                     placeholder="Enter Password"
                                     onChange={this.onChange}
