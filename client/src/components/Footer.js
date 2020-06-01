@@ -9,6 +9,7 @@ const Footer = () => {
         bottom: "0",
         height: "60px",
         width: "100%",
+        backgroundColor: '#343a40'
     };
     var phantom = {
         flexdirection: 'row',
@@ -20,7 +21,7 @@ const Footer = () => {
     return(
         <footer style={phantom}>
             <div style={style}>
-            <p style={{textAlign: 'center', fontSize: 15}}> Made with &hearts; by Prakhar Kopergaonkar (Talent 101)</p>
+            <p style={{textAlign: 'center', fontSize: 15, color:'white'}}> Made with &hearts; by Prakhar Kopergaonkar (Talent 101)</p>
             </div>
         </footer>
     )

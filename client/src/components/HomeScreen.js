@@ -7,7 +7,7 @@ class HomeScreen extends Component {
             <div>
                 <h1 className="lead text-center" style={{fontWeight:'bold'}}>Welcome To Task Management App Task Memo</h1>
                 <div className="bodydiv">
-                    <img src={require('./assests/task.png')} className="taskimage"/>
+                    <img src={require('./assests/task.png')} className="taskimage" style={{marginTop: '45px'}}/>
                  </div>
             </div>
         );

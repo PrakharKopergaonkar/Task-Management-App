@@ -26,7 +26,8 @@ class RegisterModal extends Component {
             email: '',
             password: '',
             msg: null,
-            security: true
+            security: true,
+            confirmpassword: ''
         }
     }
     componentDidUpdate(prevProps) {
@@ -59,20 +60,25 @@ class RegisterModal extends Component {
         this.setState({modal: !this.state.modal, security: true})
     }
     onChange = (e) => {
-        this.setState({[e.target.name]: e.target.value})
+        this.setState({[e.target.name]: e.target.value, msg: ""})
     }
     onSubmit = (e) => {
         e.preventDefault()
-        const {name, email, password} = this.state
-        const newUser = {
-            name,
-            email,
-            password
-        };
-
-        //Attempt to register
-        this.props.register(newUser);
-        // Close toggle
+        const {name, email, password, confirmpassword} = this.state
+        if(password === confirmpassword) {
+            const newUser = {
+                name,
+                email,
+                password
+            };
+    
+            //Attempt to register
+            this.props.register(newUser);
+            // Close toggle
+        }
+        else {
+            this.setState({msg: "Password and Confirm password does not match"})
+        }
     }
     render() {
         return (
@@ -109,7 +115,7 @@ class RegisterModal extends Component {
                                     onChange={this.onChange}
                                 />
 
-                                <Label for="Name">Password</Label>
+                                <Label for="Password">Password</Label>
                                 <div style={{flexDirection: 'row', display: 'flex'}}>
                                 <Input 
                                     type={this.state.security ? "password" : "text"}
@@ -122,6 +128,16 @@ class RegisterModal extends Component {
                                 />
                                  <FontAwesomeIcon icon={this.state.security ? faEyeSlash : faEye} onClick={() => this.setState({security: !this.state.security})} style={{marginLeft: '10px', marginTop: '10px'}}/>
                                 </div>
+                                <Label for="ConfirmPassword">Confirm Password</Label>
+                                <Input 
+                                    type={this.state.security ? "password" : "text"}
+                                    name="confirmpassword"
+                                    id="password"
+                                    className="mb-3"
+                                    placeholder="Enter Password"
+                                    onChange={this.onChange}
+                                    style={{width: '95%'}}
+                                />
                                 <Button
                                 color="dark"
                                 style={{marginTop: '2rem'}}
