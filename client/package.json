@@ -40,5 +40,8 @@
     ]
   },
   "proxy": "http://localhost:5000",
-  "secure": false
+  "secure": false,
+  "devDependencies": {
+    "react-social-icons": "^4.1.0"
+  }
 }

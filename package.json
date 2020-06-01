@@ -13,6 +13,7 @@
   "author": "Prakhar Kopergaonkar",
   "license": "MIT",
   "dependencies": {
+    "@fortawesome/react-fontawesome": "^0.1.9",
     "bcryptjs": "^2.4.3",
     "body-parser": "^1.19.0",
     "concurrently": "^5.2.0",

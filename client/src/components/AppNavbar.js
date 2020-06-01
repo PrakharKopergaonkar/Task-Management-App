@@ -13,6 +13,9 @@ import Logout1 from './auth/Logout';
 import LoginModal from './auth/LoginModal';
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faGithub, faLinkedin} from '@fortawesome/free-brands-svg-icons'
+import {Link} from 'react-router-dom'
 class AppNavbar extends Component {
     constructor(props) {
         super(props);
@@ -54,11 +57,14 @@ class AppNavbar extends Component {
         return (
             <div>
                 <Navbar color="dark" dark expand="sm" className="mb-5"> 
-                    <Container>
-                        <NavbarBrand href="/">Shopping list</NavbarBrand>
+                    <Container style={{marginLeft: 0}}>
+                    <img src={require('./assests/taskicon.png')} style={{width: '4%'}} href="/"/>
+                        <NavbarBrand href="/" style={{marginLeft: '8px'}}>
+                            Task Memo
+                        </NavbarBrand>
                         <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
-                            <Nav className="ml-auto" navbar>
+                            <Nav navbar>
                                 {isAuthenticated? authLinks:guestLinks}
                             </Nav>
                         </Collapse>

@@ -9,6 +9,7 @@ import ItemModal from './components/ItemModal'
 import {Container} from 'reactstrap'
 import LoadingButton from './components/LoadingButton';
 import {loadUser} from './Actions/AuthActions'
+import Footer from './components/Footer';
 class App extends Component{
   componentDidMount() {
     store.dispatch(loadUser());
@@ -16,14 +17,15 @@ class App extends Component{
   render() {
     return (
       <Provider store={store}>
-        <div className="App">
-          <AppNavbar/>
+        <main>
+        <AppNavbar/>
           <Container>
             <ItemModal/>
             <ShoppingList/>
             <LoadingButton/>
           </Container>
-        </div>
+        </main>
+          <Footer/>
       </Provider>
     );
   }

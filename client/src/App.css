@@ -1,3 +1,10 @@
+html, 
+body {   
+  height: 100%; 
+} body { 
+  display: flex;   
+  flex-direction: column; 
+}
 .remove-btn {
   margin-right: 0.5rem;
 }
@@ -16,3 +23,4 @@
   opacity: 0.01;
   transition: opacity 1000ms ease-in;
 }
+

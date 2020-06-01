@@ -2,18 +2,30 @@ import React, { Component } from 'react';
 import { Spinner } from 'reactstrap';
 import {setItemsLoading} from '../Actions/ItemActions'
 import {connect} from 'react-redux';
+import PropTypes from 'prop-types'
 class LoadingButton extends Component {
+    static propType = {
+        isAuthenticated: PropTypes.bool
+    }
     render() {
         const {loading} = this.props.item
         console.log(loading)
-        return (
-            <div>
-                 {loading && <Spinner size="sm" color="secondary"/>}
-            </div>
-        );
+        if(this.props.isAuthenticated == true) {
+            return (
+                <div>
+                     {loading && <Spinner color="success" size="sm" color="secondary"/>}
+                </div>
+            );
+        }
+        else {
+            return (
+                null
+            )
+        }
     }
 }
 const mapStateToProps = (state) => ({
-    item: state.item
+    item: state.item,
+    isAuthenticated: state.auth.isAuthenticated,
 })
 export default connect(mapStateToProps, {setItemsLoading})(LoadingButton);;
