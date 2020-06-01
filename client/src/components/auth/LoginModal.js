@@ -15,6 +15,8 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import {Login} from '../../Actions/AuthActions'
 import {ClearErrors} from '../../Actions/ErrorActions'
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+import { faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons'
 class LoginModal extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +24,8 @@ class LoginModal extends Component {
             modal: false,
             email: '',
             password: '',
-            msg: null
+            msg: null,
+            security: true
         }
     }
     componentDidUpdate(prevProps) {
@@ -52,7 +55,7 @@ class LoginModal extends Component {
     toggle =  () => {
         //Clear Errors
         this.props.ClearErrors()
-        this.setState({modal: !this.state.modal})
+        this.setState({modal: !this.state.modal, security: true})
     }
     onChange = (e) => {
         this.setState({[e.target.name]: e.target.value})
@@ -95,14 +98,18 @@ class LoginModal extends Component {
                                 />
 
                                 <Label for="Name">Password</Label>
+                                <div style={{flexDirection: 'row', display: 'flex'}}>
                                 <Input 
-                                    type="password"
+                                    type={this.state.security ? "password":"text"}
                                     name="password"
                                     id="password"
                                     className="mb-3"
                                     placeholder="Enter Password"
                                     onChange={this.onChange}
+                                    style={{width: '95%'}}
                                 />
+                                 <FontAwesomeIcon icon={this.state.security ? faEyeSlash : faEye} onClick={() => this.setState({security: !this.state.security})} style={{marginLeft: '10px', marginTop: '10px'}}/>
+                                </div>
                                 <Button
                                 color="dark"
                                 style={{marginTop: '2rem'}}
