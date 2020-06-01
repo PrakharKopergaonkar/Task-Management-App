@@ -58,7 +58,7 @@ class ItemModal extends Component {
                     isOpen={this.state.modal}
                     toggle={this.toggle}
                 >
-                    <ModalHeader toggle={this.toggle}>Add to shopping list</ModalHeader>
+                    <ModalHeader toggle={this.toggle}>Add New Task</ModalHeader>
                     <ModalBody>
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>

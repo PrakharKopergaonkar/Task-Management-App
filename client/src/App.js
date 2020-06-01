@@ -20,8 +20,8 @@ class App extends Component{
         <AppNavbar/>
         <main className="main">
           <Container>
-            <ItemModal/>
             <ShoppingList/>
+            <ItemModal/>
             <LoadingButton/>
           </Container>
         </main>

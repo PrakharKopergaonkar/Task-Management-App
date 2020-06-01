@@ -1,12 +1,10 @@
 import React, { Component } from 'react';
 import {
     Container, 
-    ListGroup,
-    ListGroupItem,
     Button,
+    Table
 } from 'reactstrap'
 import {
-    CSSTransition,
     TransitionGroup
 } from 'react-transition-group'
 import {connect} from 'react-redux';
@@ -14,10 +12,16 @@ import {getItems, deleteItems} from '../Actions/ItemActions'
 import PropTypes from 'prop-types'
 import HomeScreen from './HomeScreen';
 class ShoppingList extends Component {
+    constructor(props) {
+        super(props);
+        this.state = {
+            number: 1,
+            head: 0
+        }
+    }
     componentDidMount() {
         this.props.getItems();
     }
-
     onDeleteClick = (id) => {
         this.props.deleteItems(id);
     }
@@ -31,23 +35,31 @@ class ShoppingList extends Component {
         return (
             <Container>
                 {this.props.isAuthenticated ?
-                <ListGroup>
-                    <TransitionGroup className="shopping-list">
+                    <TransitionGroup className="Todo-list">
+                    <Table striped bordered responsive size="10">
+                        <thead>
+                        <tr>
+                            <th>Tasks</th>
+                            <th> Delete</th>
+                        </tr>
+                        </thead>
+                        <tbody>
                         {items.map(({_id, name}) => (
-                            <CSSTransition key={_id} timeout={500} classNames="Fade">
-                                <ListGroupItem>
-                                 <Button
+                            <tr>
+                                <td>{name}</td>   
+                            <td>
+                                  <Button
                                     className="remove-btn"
                                     color="danger"
                                     size="sm"
                                     onClick={this.onDeleteClick.bind(this, _id)}
-                                > &times;</Button> 
-                                    {name}
-                                </ListGroupItem>
-                            </CSSTransition> 
+                                > &times; </Button> 
+                            </td>,
+                            </tr>
                         ))}
+                        </tbody>
+                    </Table>
                     </TransitionGroup>
-                </ListGroup>
                  : <HomeScreen/> }
             </Container>
         );

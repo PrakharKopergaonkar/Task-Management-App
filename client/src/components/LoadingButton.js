@@ -10,7 +10,7 @@ class LoadingButton extends Component {
     render() {
         const {loading} = this.props.item
         console.log(loading)
-        if(this.props.isAuthenticated == true) {
+        if(this.props.isAuthenticated === true) {
             return (
                 <div>
                      {loading && <Spinner color="success" size="sm" color="secondary"/>}
