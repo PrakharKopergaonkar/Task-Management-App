@@ -17,8 +17,8 @@ class App extends Component{
   render() {
     return (
       <Provider store={store}>
-        <main>
         <AppNavbar/>
+        <main className="main">
           <Container>
             <ItemModal/>
             <ShoppingList/>
