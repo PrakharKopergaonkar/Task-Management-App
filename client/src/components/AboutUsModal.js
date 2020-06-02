@@ -32,10 +32,10 @@ class AboutUsModal extends Component {
                         <div>   
                         <p className="text-capitalize"> Task Memo is a Web based app for managing your daily tasks. <br/> Features of Task Memo includes : </p>
                         <ListGroup>
-                            <ListGroupItem color="success">Adding/Managing Tasks</ListGroupItem>
-                            <ListGroupItem color="info">Setting their due date</ListGroupItem>
-                            <ListGroupItem color="warning">Adding label (ex: Work, personal, others etc)</ListGroupItem>
-                            <ListGroupItem color="danger">Adding Status (ex: Started, In-progress, Completed)</ListGroupItem>
+                            <ListGroupItem>Adding/Managing Tasks</ListGroupItem>
+                            <ListGroupItem>Setting their due date</ListGroupItem>
+                            <ListGroupItem>Adding label (ex: Work, personal, others etc)</ListGroupItem>
+                            <ListGroupItem>Adding Status (ex: Started, In-progress, Completed)</ListGroupItem>
                         </ListGroup>
                         </div>
                         </div>

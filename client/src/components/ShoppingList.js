@@ -40,13 +40,15 @@ class ShoppingList extends Component {
                         <thead>
                         <tr>
                             <th>Tasks</th>
+                            <th> Date Created</th>
                             <th> Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {items.map(({_id, name}) => (
+                        {items.map(({_id, name, date}) => (
                             <tr>
-                                <td>{name}</td>   
+                            <td>{name}</td> 
+                            <td>{date.substring(0,10)}</td>   
                             <td>
                                   <Button
                                     className="remove-btn"
@@ -54,7 +56,7 @@ class ShoppingList extends Component {
                                     size="sm"
                                     onClick={this.onDeleteClick.bind(this, _id)}
                                 > &times; </Button> 
-                            </td>,
+                            </td>
                             </tr>
                         ))}
                         </tbody>
