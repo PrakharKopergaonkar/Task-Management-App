@@ -51,7 +51,7 @@ class ItemModal extends Component {
                     style={{marginBottom: '2rem'}}
                     onClick={this.toggle}
                 >
-                    Add Item
+                    Add Task
                 </Button> : null
                 } 
                 <Modal

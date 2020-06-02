@@ -6,13 +6,13 @@ import {
     NavbarBrand,
     Nav, 
     NavItem,
-    Container
 } from 'reactstrap';
 import RegisterModal from './auth/RegisterModal'
 import Logout1 from './auth/Logout';
 import LoginModal from './auth/LoginModal';
 import PropTypes from 'prop-types'
 import {connect} from 'react-redux';
+import AboutUsModal from './AboutUsModal';
 class AppNavbar extends Component {
     constructor(props) {
         super(props);
@@ -51,6 +51,14 @@ class AppNavbar extends Component {
                 </NavItem>
             </Fragment>
         )
+
+        const aboutuslink = (
+            <Fragment>
+                <NavItem>
+                    <AboutUsModal/>
+                </NavItem>
+            </Fragment>
+        )
         return (
             <div>
                 <Navbar color="dark" dark expand="sm"> 
@@ -58,6 +66,9 @@ class AppNavbar extends Component {
                         <NavbarBrand href="/" style={{marginLeft: '8px', fontSize: '15px'}}>
                             Task Memo
                         </NavbarBrand>
+                        <Nav navbar>
+                            {aboutuslink}
+                        </Nav>
                     <NavbarToggler onClick={this.toggle}/>
                         <Collapse isOpen={this.state.isOpen} navbar>
                             <Nav navbar className="ml-auto">
