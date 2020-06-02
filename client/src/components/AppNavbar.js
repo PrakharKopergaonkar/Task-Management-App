@@ -63,8 +63,11 @@ class AppNavbar extends Component {
             <div>
                 <Navbar color="dark" dark expand="sm"> 
                     <img src={require('./assests/taskicon.png')} style={{width: '3%'}} href="/"/>
-                        <NavbarBrand href="/" style={{marginLeft: '8px', fontSize: '15px'}}>
+                        <NavbarBrand style={{marginLeft: '8px', fontSize: '15px'}}>
                             Task Memo
+                        </NavbarBrand>
+                        <NavbarBrand href="/" style={{marginLeft: '8px', fontSize: '15px'}}>
+                            Home
                         </NavbarBrand>
                         <Nav navbar>
                             {aboutuslink}
