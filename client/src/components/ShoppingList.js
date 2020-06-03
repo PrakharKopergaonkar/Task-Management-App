@@ -2,7 +2,8 @@ import React, { Component } from 'react';
 import {
     Container, 
     Button,
-    Table
+    Table,
+    Input,
 } from 'reactstrap'
 import {
     TransitionGroup
@@ -15,8 +16,7 @@ class ShoppingList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            number: 1,
-            head: 0
+            itemsearch: ''
         }
     }
     componentDidMount() {
@@ -30,22 +30,46 @@ class ShoppingList extends Component {
         item: PropTypes.object.isRequired,
         isAuthenticated: PropTypes.bool
     }
+    onChange = (e) => {
+        this.setState({[e.target.name]: e.target.value})
+    }
     render() {
-        const {items} = this.props.item;
+        const {items} = this.props.item
+        const filtereditems = items.filter(
+            (item) => {
+                if(this.state.itemsearch.length !== 0) {
+                    return item.name.indexOf(this.state.itemsearch) !== -1
+                }
+                else {
+                    return item.name
+                }
+            }
+        );
+        console.log(filtereditems)
         return (
             <Container>
                 {this.props.isAuthenticated ?
                     <TransitionGroup className="Todo-list">
+                    <div style={{flexDirection: 'row', display: 'flex', marginTop: '43px', marginBottom: '20px'}}>
+                        <Input 
+                            type="text"
+                            name="itemsearch"
+                            id="item"
+                            placeholder="Search"
+                            onChange={this.onChange}
+                            style={{width: '50%'}}
+                        />
+                    </div>
                     <Table striped bordered responsive size="10">
                         <thead>
                         <tr>
-                            <th>Tasks</th>
+                            <th>Task</th>
                             <th> Date Created</th>
                             <th> Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {items.map(({_id, name, date}) => (
+                        {filtereditems.map(({_id, name, date}) => (
                             <tr>
                             <td>{name}</td> 
                             <td>{date.substring(0,10)}</td>   
