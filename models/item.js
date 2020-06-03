@@ -12,6 +12,9 @@ const ItemSchema = new Schema({
     date: {
         type: Date,
         default: Date.now
+    },
+    DueDate: {
+        type:Date
     }
 });
 

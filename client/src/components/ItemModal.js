@@ -10,6 +10,8 @@ import {
     Input
 } from 'reactstrap'
 import PropTypes from 'prop-types'
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import {connect} from 'react-redux'
 import {addItem} from '../Actions/ItemActions'
 class ItemModal extends Component {
@@ -17,7 +19,8 @@ class ItemModal extends Component {
         super(props);
         this.state = {
             modal: false,
-            name: ''
+            name: '',
+            dueDate: new Date()
         }
     }
 
@@ -26,15 +29,21 @@ class ItemModal extends Component {
     }
 
     toggle =  () => {
-        this.setState({modal: !this.state.modal})
+        this.setState({modal: !this.state.modal, dueDate: new Date()})
     }
     onChange = (e) => {
         this.setState({[e.target.name]: e.target.value})
     }
+    handleChange = date => {
+        this.setState({
+          dueDate: date
+        });
+      };
     onSubmit = (e) => {
         e.preventDefault()
         const newItem = {
-            name:this.state.name
+            name:this.state.name,
+            DueDate:this.state.dueDate
         }
 
         //Add item via addItem action
@@ -69,6 +78,12 @@ class ItemModal extends Component {
                                     id="item"
                                     placeholder="Add New Task"
                                     onChange={this.onChange}
+                                />
+                                <Label for="Item" style={{marginTop: '5px'}}>Due Date </Label>
+                                <br/>
+                                <DatePicker
+                                    selected={this.state.dueDate}
+                                    onChange={this.handleChange}
                                 />
                                 <Button
                                 color="dark"

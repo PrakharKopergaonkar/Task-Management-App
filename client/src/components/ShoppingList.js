@@ -38,7 +38,7 @@ class ShoppingList extends Component {
         const filtereditems = items.filter(
             (item) => {
                 if(this.state.itemsearch.length !== 0) {
-                    return item.name.indexOf(this.state.itemsearch) !== -1
+                    return item.name.toLowerCase().indexOf(this.state.itemsearch.toLowerCase()) !== -1
                 }
                 else {
                     return item.name
@@ -60,19 +60,21 @@ class ShoppingList extends Component {
                             style={{width: '50%'}}
                         />
                     </div>
-                    <Table striped bordered responsive size="10">
+                    <Table striped bordered responsive size="3">
                         <thead>
                         <tr>
                             <th>Task</th>
                             <th> Date Created</th>
+                            <th> Due Date</th>
                             <th> Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {filtereditems.map(({_id, name, date}) => (
+                        {filtereditems.map(({_id, name, date, DueDate}) => (
                             <tr>
                             <td>{name}</td> 
-                            <td>{date.substring(0,10)}</td>   
+                            <td>{date.substring(0,10)}</td>  
+                            <td> {DueDate.substring(0,10)} </td> 
                             <td>
                                   <Button
                                     className="remove-btn"
