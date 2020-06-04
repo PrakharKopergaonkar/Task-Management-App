@@ -4,7 +4,8 @@ import {
     Button,
     Table,
     Input,
-    Dropdown, DropdownToggle, DropdownMenu, DropdownItem
+    Dropdown, DropdownToggle, DropdownMenu, DropdownItem,
+    Label
 } from 'reactstrap'
 import {
     TransitionGroup
@@ -78,6 +79,7 @@ class ShoppingList extends Component {
                             onChange={this.onChange}
                             style={{width: '50%'}}
                         />
+                         <Label for="Item" style={{marginLeft:'15px', marginRight:'15px', marginTop:'3px'}}>Label</Label>
                         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggledropdown}>
                                     <DropdownToggle caret>
                                     {this.state.label}
@@ -98,16 +100,18 @@ class ShoppingList extends Component {
                             <th> Date Created</th>
                             <th> Due Date</th>
                             <th> Label </th>
+                            <th> Status </th>
                             <th> Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {filtereditems.map(({_id, name, date, DueDate, label}) => (
+                        {filtereditems.map(({_id, name, date, DueDate, label, status}) => (
                             <tr>
                             <td>{name}</td> 
                             <td>{date.substring(0,10)}</td>  
                             <td> {DueDate.substring(0,10)} </td> 
                             <td>{label}</td>
+                            <td> {status}</td>
                             <td>
                                   <Button
                                     className="remove-btn"

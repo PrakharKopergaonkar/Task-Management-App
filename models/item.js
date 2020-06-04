@@ -19,6 +19,10 @@ const ItemSchema = new Schema({
     label: {
         type: "String",
         required: true
+    },
+    status: {
+        type: "String",
+        default: "New"
     }
 });
 
