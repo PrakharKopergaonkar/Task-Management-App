@@ -28,7 +28,7 @@ router.post('/', (req, res) => {
                 bcrypt.hash(newUser.password, salt, (err, hash) => {
                 //    if(err) throw err
                     newUser.password = hash
-                    newUser.save()
+                    newUser.save() 
                         .then(user => {
                             jwt.sign(
                                 {id: user.id},

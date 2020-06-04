@@ -20,7 +20,9 @@ class ShoppingList extends Component {
         this.state = {
             itemsearch: '',
             dropdownOpen: false,
-            label: 'All'
+            label: 'All',
+            dropdownstatusOpen: false,
+            labelstatus: 'All'
         }
     }
     componentDidMount() {
@@ -29,9 +31,16 @@ class ShoppingList extends Component {
     toggledropdown = () => {
         this.setState({dropdownOpen:!this.state.dropdownOpen})
     }
+    toggledropdownstatus = () => {
+        this.setState({dropdownstatusOpen: !this.state.dropdownstatusOpen})
+    }
     onselect = (e) => {
         const {textContent} = e.currentTarget
         this.setState({label: textContent})
+    }
+    onselectlabel = (e) => {
+        const {textContent} = e.currentTarget
+        this.setState({labelstatus: textContent})
     }
     onDeleteClick = (id) => {
         this.props.deleteItems(id);
@@ -62,10 +71,21 @@ class ShoppingList extends Component {
                    return item.label
                }
                else {
-                   return item.label == this.state.label
+                   return item.label === this.state.label
                }
            }
        )
+       filtereditems = filtereditems.filter(
+        (item) => {
+            if(this.state.labelstatus === 'All') {
+                return item.status
+            }
+            else {
+                return item.status === this.state.labelstatus
+            }
+        }
+    )
+
         return (
             <Container>
                 {this.props.isAuthenticated ?
@@ -90,6 +110,18 @@ class ShoppingList extends Component {
                                         <DropdownItem tag="Work" onClick={this.onselect}>Work</DropdownItem>
                                         <DropdownItem tag="Shopping" onClick={this.onselect}>shopping</DropdownItem> 
                                         <DropdownItem tag="Others" onClick={this.onselect}>Others</DropdownItem>   
+                                    </DropdownMenu>
+                        </Dropdown>
+                        <Label for="Label" style={{marginLeft:'15px', marginRight:'15px', marginTop:'3px'}}>Status</Label>
+                        <Dropdown isOpen={this.state.dropdownstatusOpen} toggle={this.toggledropdownstatus}>
+                                    <DropdownToggle caret>
+                                    {this.state.labelstatus}
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem tag="All" onClick={this.onselectlabel}>All</DropdownItem>
+                                        <DropdownItem tag="New" onClick={this.onselectlabel}>New</DropdownItem>
+                                        <DropdownItem tag="Inprogress" onClick={this.onselectlabel}>In progress</DropdownItem>
+                                        <DropdownItem tag="Completed" onClick={this.onselectlabel}>Completed</DropdownItem>    
                                     </DropdownMenu>
                         </Dropdown>
                     </div>

@@ -39,6 +39,11 @@ router.delete('/:id', auth, (req, res) => {
         .catch(err => res.status(404).json({sucess: false}));
  })
 
- 
-
+router.patch('/:id', (req, res) => {
+    var id = req.params.id
+    Item.findByIdAndUpdate(id, {"status":req.body.status}, (err, post) => {
+        if(err) return err
+        res.json({sucess:true})
+    })
+})
 module.exports = router;
