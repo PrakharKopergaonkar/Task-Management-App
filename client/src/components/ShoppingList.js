@@ -11,9 +11,10 @@ import {
     TransitionGroup
 } from 'react-transition-group'
 import {connect} from 'react-redux';
-import {getItems, deleteItems} from '../Actions/ItemActions'
+import {getItems, deleteItems, updateItems} from '../Actions/ItemActions'
 import PropTypes from 'prop-types'
 import HomeScreen from './HomeScreen';
+import StatusEdit from './StatusEdit';
 class ShoppingList extends Component {
     constructor(props) {
         super(props);
@@ -22,7 +23,8 @@ class ShoppingList extends Component {
             dropdownOpen: false,
             label: 'All',
             dropdownstatusOpen: false,
-            labelstatus: 'All'
+            labelstatus: 'All',
+            statuseditOpen: false
         }
     }
     componentDidMount() {
@@ -42,10 +44,18 @@ class ShoppingList extends Component {
         const {textContent} = e.currentTarget
         this.setState({labelstatus: textContent})
     }
+    onselectstatusedit = (_id, status) => {
+        const newstatus = {
+            status: status
+        }
+        this.props.updateItems(_id, newstatus)
+    }
     onDeleteClick = (id) => {
         this.props.deleteItems(id);
     }
+    
     static propTypes = {
+        updateItems: PropTypes.func.isRequired,
         getItems: PropTypes.func.isRequired,
         item: PropTypes.object.isRequired,
         isAuthenticated: PropTypes.bool
@@ -138,12 +148,14 @@ class ShoppingList extends Component {
                         </thead>
                         <tbody>
                         {filtereditems.map(({_id, name, date, DueDate, label, status}) => (
-                            <tr>
+                            <tr key={_id}>
                             <td>{name}</td> 
                             <td>{date.substring(0,10)}</td>  
                             <td> {DueDate.substring(0,10)} </td> 
                             <td>{label}</td>
-                            <td> {status}</td>
+                            <td> 
+                                <tr key={_id}><StatusEdit status={status} _id={_id}/> </tr>
+                            </td>
                             <td>
                                   <Button
                                     className="remove-btn"
@@ -169,4 +181,4 @@ const mapStateToProps = (state) => ({
     auth: state.auth
 })
 
-export default connect(mapStateToProps, {getItems, deleteItems})(ShoppingList);
+export default connect(mapStateToProps, {getItems, deleteItems, updateItems})(ShoppingList);

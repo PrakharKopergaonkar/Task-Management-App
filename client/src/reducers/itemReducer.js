@@ -1,5 +1,5 @@
-import {v4 as uuidv4} from 'uuid'
-import {GET_ITEMS, ADD_ITEMS, DELETE_ITEMS, ITEMS_LOADING} from '../Actions/types'
+
+import {GET_ITEMS, ADD_ITEMS, DELETE_ITEMS, ITEMS_LOADING, UPDATE_ITEMS} from '../Actions/types'
 const initialState = { 
     items: [],
     loading: false
@@ -32,6 +32,10 @@ export default function(state = initialState, action) {
             return {
                 ...state,
                 loading : true
+            }
+        case UPDATE_ITEMS:
+            return {
+                ...state
             }
         default:
             return state;

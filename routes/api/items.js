@@ -39,11 +39,11 @@ router.delete('/:id', auth, (req, res) => {
         .catch(err => res.status(404).json({sucess: false}));
  })
 
-router.patch('/:id', (req, res) => {
+router.patch('/:id', auth, (req, res) => {
     var id = req.params.id
-    Item.findByIdAndUpdate(id, {"status":req.body.status}, (err, post) => {
+    Item.findByIdAndUpdate(id,{"status":req.body.status},{ upsert: true }, (err, post) => {
         if(err) return err
-        res.json({sucess:true})
+        res.json(post)
     })
 })
 module.exports = router;

@@ -1,4 +1,4 @@
-import {GET_ITEMS, ADD_ITEMS, DELETE_ITEMS, ITEMS_LOADING} from './types'
+import {GET_ITEMS, ADD_ITEMS, DELETE_ITEMS, ITEMS_LOADING, UPDATE_ITEMS} from './types'
 import axios from 'axios';
 import {tokenConfig} from './AuthActions';
 import {returnErrors} from './ErrorActions'
@@ -27,7 +27,17 @@ export const addItem = item => (dispatch, getState) => {
             }))
             .catch(err => dispatch(returnErrors(err.response.data, err.response.status) ))
 }
-
+export const updateItems = (id, item) => (dispatch, getState) => {
+    axios
+        .patch(`/api/items/${id}`, item, tokenConfig(getState))
+        .then(res => 
+            dispatch({
+                type: UPDATE_ITEMS,
+                payload: res.data
+            }))
+            .catch(err => dispatch(returnErrors(err.response.data, err.response.status)))
+            
+}
 export const setItemsLoading = () => {
     return {
         type: ITEMS_LOADING
