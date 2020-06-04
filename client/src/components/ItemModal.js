@@ -7,7 +7,9 @@ import {
     Form,
     FormGroup,
     Label,
-    Input
+    Input,
+    Alert,
+    Dropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap'
 import PropTypes from 'prop-types'
 import DatePicker from "react-datepicker";
@@ -20,16 +22,18 @@ class ItemModal extends Component {
         this.state = {
             modal: false,
             name: '',
-            dueDate: new Date()
+            dueDate: new Date(),
+            dropdownOpen: false,
+            label : "Label",
+            msg: null
         }
     }
 
     static propTypes = {
         isAuthenticated: PropTypes.bool
     }
-
     toggle =  () => {
-        this.setState({modal: !this.state.modal, dueDate: new Date()})
+        this.setState({modal: !this.state.modal, dueDate: new Date(), msg: null})
     }
     onChange = (e) => {
         this.setState({[e.target.name]: e.target.value})
@@ -39,18 +43,31 @@ class ItemModal extends Component {
           dueDate: date
         });
       };
+    onselect = (e) => {
+        const {textContent} = e.currentTarget
+        this.setState({label: textContent, msg: null})
+    }
     onSubmit = (e) => {
         e.preventDefault()
-        const newItem = {
-            name:this.state.name,
-            DueDate:this.state.dueDate
+        if(this.state.label == 'Label' || this.state.name == '') {
+            this.setState({msg: 'Please fill all details'})
         }
-
-        //Add item via addItem action
-        this.props.addItem(newItem);
-
-        // Close toggle
-        this.toggle();
+        else {
+            const newItem = {
+                name:this.state.name,
+                DueDate:this.state.dueDate,
+                label: this.state.label
+            }
+    
+            //Add item via addItem action
+            this.props.addItem(newItem);
+    
+            // Close toggle
+            this.toggle();
+        }
+    }
+    toggledropdown = () => {
+        this.setState({dropdownOpen:!this.state.dropdownOpen})
     }
     render() {
         return (
@@ -69,6 +86,7 @@ class ItemModal extends Component {
                 >
                     <ModalHeader toggle={this.toggle}>New Task</ModalHeader>
                     <ModalBody>
+                    {this.state.msg ? <Alert>{this.state.msg} </Alert> : null}
                         <Form onSubmit={this.onSubmit}>
                             <FormGroup>
                                 <Label for="Item">Task </Label>
@@ -79,12 +97,27 @@ class ItemModal extends Component {
                                     placeholder="Add New Task"
                                     onChange={this.onChange}
                                 />
-                                <Label for="Item" style={{marginTop: '5px'}}>Due Date </Label>
+                                <br/>
+                                <Label for="Item">Label</Label>
+                                <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggledropdown}>
+                                    <DropdownToggle caret>
+                                    {this.state.label}
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem tag="Personal" onClick={this.onselect}>Personal</DropdownItem>
+                                        <DropdownItem tag="Work" onClick={this.onselect}>Work</DropdownItem>
+                                        <DropdownItem tag="Shopping" onClick={this.onselect}>shopping</DropdownItem> 
+                                        <DropdownItem tag="Others" onClick={this.onselect}>Others</DropdownItem>   
+                                    </DropdownMenu>
+                                </Dropdown>
+                                <br/>
+                                <Label for="Item" style={{marginTop: '5px', marginRight: '4px'}}>Due Date </Label>
                                 <br/>
                                 <DatePicker
                                     selected={this.state.dueDate}
                                     onChange={this.handleChange}
                                 />
+                                <br/>
                                 <Button
                                 color="dark"
                                 style={{marginTop: '2rem'}}

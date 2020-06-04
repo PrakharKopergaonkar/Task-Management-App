@@ -20,7 +20,7 @@ const Footer = () => {
     return(
         <footer style={phantom}>
             <div style={style}>
-            <p style={{textAlign: 'center', fontSize: 15}}> Made with &hearts; by Prakhar Kopergaonkar</p>
+            <p style={{textAlign: 'center', fontSize: 15}}> Made with &hearts; by Talent 101</p>
             </div>
         </footer>
     )

@@ -66,15 +66,17 @@ class ShoppingList extends Component {
                             <th>Task</th>
                             <th> Date Created</th>
                             <th> Due Date</th>
+                            <th> Label </th>
                             <th> Delete</th>
                         </tr>
                         </thead>
                         <tbody>
-                        {filtereditems.map(({_id, name, date, DueDate}) => (
+                        {filtereditems.map(({_id, name, date, DueDate, label}) => (
                             <tr>
                             <td>{name}</td> 
                             <td>{date.substring(0,10)}</td>  
                             <td> {DueDate.substring(0,10)} </td> 
+                            <td>{label}</td>
                             <td>
                                   <Button
                                     className="remove-btn"

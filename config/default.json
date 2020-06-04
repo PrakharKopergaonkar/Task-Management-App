@@ -1,4 +1,4 @@
 {
-    "mongoURI": "mongodb://prakhar:prakhar123@localhost/users",
+    "mongoURI": "mongodb://user:user123@localhost/users",
     "jwtSecret":"sl_myJwtSecret" 
 }

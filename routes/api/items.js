@@ -23,7 +23,8 @@ router.get('/', (req, res) => {
 router.post('/', auth, (req, res) => {
    const newItem = new Item({
        name: req.body.name,
-       DueDate: req.body.DueDate
+       DueDate: req.body.DueDate,
+       label: req.body.label
    });
    newItem.save().then(item => res.json(item))
 })

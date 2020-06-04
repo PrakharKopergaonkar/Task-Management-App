@@ -15,6 +15,10 @@ const ItemSchema = new Schema({
     },
     DueDate: {
         type:Date
+    },
+    label: {
+        type: "String",
+        required: true
     }
 });
 
