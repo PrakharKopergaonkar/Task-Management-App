@@ -4,6 +4,7 @@ import {
     Button,
     Table,
     Input,
+    Dropdown, DropdownToggle, DropdownMenu, DropdownItem
 } from 'reactstrap'
 import {
     TransitionGroup
@@ -16,11 +17,20 @@ class ShoppingList extends Component {
     constructor(props) {
         super(props);
         this.state = {
-            itemsearch: ''
+            itemsearch: '',
+            dropdownOpen: false,
+            label: 'All'
         }
     }
     componentDidMount() {
         this.props.getItems();
+    }
+    toggledropdown = () => {
+        this.setState({dropdownOpen:!this.state.dropdownOpen})
+    }
+    onselect = (e) => {
+        const {textContent} = e.currentTarget
+        this.setState({label: textContent})
     }
     onDeleteClick = (id) => {
         this.props.deleteItems(id);
@@ -35,7 +45,7 @@ class ShoppingList extends Component {
     }
     render() {
         const {items} = this.props.item
-        const filtereditems = items.filter(
+        let filtereditems = items.filter(
             (item) => {
                 if(this.state.itemsearch.length !== 0) {
                     return item.name.toLowerCase().indexOf(this.state.itemsearch.toLowerCase()) !== -1
@@ -45,7 +55,16 @@ class ShoppingList extends Component {
                 }
             }
         );
-        console.log(filtereditems)
+       filtereditems = filtereditems.filter(
+           (item) => {
+               if(this.state.label === 'All') {
+                   return item.label
+               }
+               else {
+                   return item.label == this.state.label
+               }
+           }
+       )
         return (
             <Container>
                 {this.props.isAuthenticated ?
@@ -59,6 +78,18 @@ class ShoppingList extends Component {
                             onChange={this.onChange}
                             style={{width: '50%'}}
                         />
+                        <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggledropdown}>
+                                    <DropdownToggle caret>
+                                    {this.state.label}
+                                    </DropdownToggle>
+                                    <DropdownMenu>
+                                        <DropdownItem tag="All" onClick={this.onselect}>All</DropdownItem>
+                                        <DropdownItem tag="Personal" onClick={this.onselect}>Personal</DropdownItem>
+                                        <DropdownItem tag="Work" onClick={this.onselect}>Work</DropdownItem>
+                                        <DropdownItem tag="Shopping" onClick={this.onselect}>shopping</DropdownItem> 
+                                        <DropdownItem tag="Others" onClick={this.onselect}>Others</DropdownItem>   
+                                    </DropdownMenu>
+                        </Dropdown>
                     </div>
                     <Table striped bordered responsive size="3">
                         <thead>
