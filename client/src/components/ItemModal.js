@@ -49,7 +49,7 @@ class ItemModal extends Component {
     }
     onSubmit = (e) => {
         e.preventDefault()
-        if(this.state.label == 'Label' || this.state.name == '') {
+        if(this.state.label === 'Label' || this.state.name === '') {
             this.setState({msg: 'Please fill all details'})
         }
         else {

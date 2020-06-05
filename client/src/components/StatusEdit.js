@@ -46,7 +46,7 @@ class StatusEdit extends Component {
             this.setState({color: 'success'})
         }
         this.setState({status})
-        console.log(this.props)
+       
         this.props.updateItems(_id, newstatus)
     }
     render() {
