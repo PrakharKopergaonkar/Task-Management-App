@@ -111,7 +111,7 @@ class ShoppingList extends Component {
                         />
                          <Label for="Item" style={{marginLeft:'15px', marginRight:'15px', marginTop:'3px'}}>Label</Label>
                         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggledropdown}>
-                                    <DropdownToggle caret>
+                                    <DropdownToggle caret color="primary">
                                     {this.state.label}
                                     </DropdownToggle>
                                     <DropdownMenu>
@@ -124,7 +124,7 @@ class ShoppingList extends Component {
                         </Dropdown>
                         <Label for="Label" style={{marginLeft:'15px', marginRight:'15px', marginTop:'3px'}}>Status</Label>
                         <Dropdown isOpen={this.state.dropdownstatusOpen} toggle={this.toggledropdownstatus}>
-                                    <DropdownToggle caret>
+                                    <DropdownToggle caret color="primary">
                                     {this.state.labelstatus}
                                     </DropdownToggle>
                                     <DropdownMenu>

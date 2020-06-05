@@ -7,32 +7,54 @@ class StatusEdit extends Component {
     constructor(props) {
         super(props)
         this.state = {
-            statuseditOpen: false
+            statuseditOpen: false,
+            status: '',
+            color: ''
         }
     }
+    componentDidMount() {
+        const {status} = this.props
+        if(status === 'New') {
+            this.setState({color: 'primary'})
+        }
+        else if(status === 'In progress') {
+            this.setState({color: 'danger'})
+        }
+        else {
+            this.setState({color: 'success'})
+        }
+        this.setState({status})
+    }
+   
     static propTypes = {
-        deleteItems: PropTypes.func.isRequired,
         updateItems: PropTypes.func.isRequired,
-        isAuthenticated: PropTypes.bool
     }
     togglestatusedit = () => {
         this.setState({statuseditOpen: !this.state.statuseditOpen})
     }
     onselectstatusedit = (_id, status) => {
-        console.log(_id, status)
         const newstatus = {
             status: status
         }
+        if(status === 'New') {
+            this.setState({color: 'primary'})
+        }
+        else if(status === 'In progress') {
+            this.setState({color: 'danger'})
+        }
+        else {
+            this.setState({color: 'success'})
+        }
+        this.setState({status})
         console.log(this.props)
         this.props.updateItems(_id, newstatus)
-        window.location.reload(false);
     }
     render() {
-        const {status, _id} = this.props
+        const {_id} = this.props
         return (
             <Dropdown isOpen={this.state.statuseditOpen} toggle={this.togglestatusedit}>
-            <DropdownToggle caret>
-            {status}
+            <DropdownToggle caret color={this.state.color}>
+            {this.state.status}
             </DropdownToggle>
             <DropdownMenu>
                 <DropdownItem  onClick={() => this.onselectstatusedit(_id,"New")}>New</DropdownItem>
