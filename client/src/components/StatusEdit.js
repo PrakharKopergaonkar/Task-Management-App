@@ -52,7 +52,7 @@ class StatusEdit extends Component {
     render() {
         const {_id} = this.props
         return (
-            <Dropdown isOpen={this.state.statuseditOpen} toggle={this.togglestatusedit}>
+            <Dropdown isOpen={this.state.statuseditOpen} toggle={this.togglestatusedit} direction="right">
             <DropdownToggle caret color={this.state.color}>
             {this.state.status}
             </DropdownToggle>

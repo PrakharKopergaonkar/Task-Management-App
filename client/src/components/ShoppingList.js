@@ -65,6 +65,7 @@ class ShoppingList extends Component {
     }
     render() {
         const {items} = this.props.item
+        //filter based on searched task
         let filtereditems = items.filter(
             (item) => {
                 if(this.state.itemsearch.length !== 0) {
@@ -75,6 +76,8 @@ class ShoppingList extends Component {
                 }
             }
         );
+
+        //filter based on label of task
        filtereditems = filtereditems.filter(
            (item) => {
                if(this.state.label === 'All') {
@@ -85,6 +88,8 @@ class ShoppingList extends Component {
                }
            }
        )
+
+       //filter based on status of task
        filtereditems = filtereditems.filter(
         (item) => {
             if(this.state.labelstatus === 'All') {
