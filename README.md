@@ -4,7 +4,11 @@ Task mangement app developed using mern stack, redux for Stackhack online hackat
 <ol>
   <li> 
     <strong> Installation Guide -  </strong><br/>
-    <p> Make sure you have node js, mongodb and npm installed before installing and configuring rest of the application</p>
+    <p> Make sure you have node js, mongodb and npm installed before installing and configuring rest of the application 		<br/>
+	You can follow install mongoDB from - https://docs.mongodb.com/manual/tutorial/install-mongodb-on-windows/
+	<br/>
+	 Node js - https://nodejs.org/en/download/
+    </p>
       <ul>
         <li> <strong> Mongodb configuration - </strong>
         <ul>
