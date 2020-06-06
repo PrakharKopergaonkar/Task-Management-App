@@ -3,6 +3,7 @@ const bcrypt = require('bcryptjs')
 const router = express.Router();
 const config = require('config');
 const jwt = require('jsonwebtoken');
+const mongoose = require('mongoose')
 //Item model
 
 const User = require('../../models/user')
@@ -13,6 +14,7 @@ const User = require('../../models/user')
 
 router.post('/', (req, res) => {
     const {name, email, password} = req.body;
+    req.body.email = req.body.email.toLowerCase()
     if(!name || !email || !password) {
         res.status(400).json({msg: 'please enter all fields'})
     }
@@ -49,7 +51,7 @@ router.post('/', (req, res) => {
                         })
                 })
             })
-            })
+        })
     })
 
 

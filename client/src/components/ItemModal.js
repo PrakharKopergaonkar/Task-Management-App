@@ -74,7 +74,7 @@ class ItemModal extends Component {
             <div>
                 {this.props.isAuthenticated ?  <Button
                     color="dark"
-                    style={{marginBottom: '2rem'}}
+                    style={{marginBottom: '2%', marginTop: '3%'}}
                     onClick={this.toggle}
                 >
                     Add Task

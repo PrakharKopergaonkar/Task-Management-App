@@ -12,7 +12,7 @@ const Item = require('../../models/item')
 
 router.get('/', (req, res) => {
     Item.find()
-        .sort({date: -1})
+        .sort({DueDate: 1})
         .then(items => res.json(items))
 })
 

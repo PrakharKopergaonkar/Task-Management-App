@@ -105,7 +105,7 @@ class ShoppingList extends Component {
             <Container>
                 {this.props.isAuthenticated ?
                     <TransitionGroup className="Todo-list">
-                    <div style={{flexDirection: 'row', display: 'flex', marginTop: '43px', marginBottom: '20px'}}>
+                    <div style={{flexDirection: 'row', display: 'flex', marginTop: '5%', marginBottom: '3%'}}>
                         <Input 
                             type="text"
                             name="itemsearch"
@@ -114,7 +114,7 @@ class ShoppingList extends Component {
                             onChange={this.onChange}
                             style={{width: '50%'}}
                         />
-                         <Label for="Item" style={{marginLeft:'15px', marginRight:'15px', marginTop:'3px'}}>Label</Label>
+                         <Label for="Item" style={{marginLeft:'2%', marginRight:'2%', marginTop:'0.5%'}}>Label</Label>
                         <Dropdown isOpen={this.state.dropdownOpen} toggle={this.toggledropdown}>
                                     <DropdownToggle caret color="primary">
                                     {this.state.label}
@@ -127,7 +127,7 @@ class ShoppingList extends Component {
                                         <DropdownItem tag="Others" onClick={this.onselect}>Others</DropdownItem>   
                                     </DropdownMenu>
                         </Dropdown>
-                        <Label for="Label" style={{marginLeft:'15px', marginRight:'15px', marginTop:'3px'}}>Status</Label>
+                        <Label for="Label" style={{marginLeft:'2%', marginRight:'2%', marginTop:'0.5%'}}>Status</Label>
                         <Dropdown isOpen={this.state.dropdownstatusOpen} toggle={this.toggledropdownstatus}>
                                     <DropdownToggle caret color="primary">
                                     {this.state.labelstatus}
@@ -140,7 +140,7 @@ class ShoppingList extends Component {
                                     </DropdownMenu>
                         </Dropdown>
                     </div>
-                    <Table striped bordered responsive size="3">
+                    <Table bordered small striped size="3">
                         <thead>
                         <tr>
                             <th>Task</th>
