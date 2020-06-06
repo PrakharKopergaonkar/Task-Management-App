@@ -29,7 +29,7 @@ Task mangement app developed using mern stack, redux for Stackhack online hackat
            <li> <strong> Configuring cloned project </strong> </li>
            <ul>
               <li>  Go into project folder and type  <strong>npm install </strong> in your terminal to install server side dependencies. </li>
-							<li> After sucessfully installing server side dependencies type <strong> npm client-install </strong> to install client side dependencies. </li>
+							<li> After sucessfully installing server side dependencies type <strong> npm run client-install </strong> to install client side dependencies. </li>
 							<li> Now type <strong> npm run dev </strong> To concurrently run server and client </li>
            </ul>
       </ul>
